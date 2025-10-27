@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>高中选科测评 | 科学选科指导</title>
+  
+  <!-- 内联Tailwind CSS核心样式 -->
+  <style>
+    /* 基础样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    
+    /* 工具类样式 */
+    .hidden {
+      display: none !important;
+    }
+    
+    .flex {
+      display: flex;
+    }
+    
+    .justify-center {
+      justify-content: center;
+    }
+    
+    .justify-between {
+      justify-content: space-between;
+    }
+    
+    .items-center {
+      align-items: center;
+    }
+    
+    .flex-col {
+      flex-direction: column;
+    }
+    
+    .w-full {
+      width: 100%;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    /* 颜色系统 */
+    .bg-white {
+      background-color: white;
+    }
+    
+    .bg-gray-50 {
+      background-color: #f9fafb;
+    }
+    
+    .bg-primary {
+      background-color: #3B82F6;
+    }
+    
+    /* .bg-primary\\/5 {
+      background-color: rgba(59, 130, 246, 0.05);
+    } */
+    
+    .bg-liberal {
+      background-color: #EC4899;
+    }
+    
+    .bg-science {
+      background-color: #10B981;
+    }
+    
+    .bg-mixed {
+      background-color: #F59E0B;
+    }
+    
+    /* .bg-liberal\\/20 {
+      background-color: rgba(236, 72, 153, 0.2);
+    }
+    
+    .bg-science\\/20 {
+      background-color: rgba(16, 185, 129, 0.2);
+    }
+    
+    .bg-mixed\\/20 {
+      background-color: rgba(245, 158, 11, 0.2);
+    } */
+    
+    .text-white {
+      color: white;
+    }
+    
+    .text-primary {
+      color: #3B82F6;
+    }
+    
+    .text-liberal {
+      color: #EC4899;
+    }
+    
+    .text-science {
+      color: #10B981;
+    }
+    
+    .text-mixed {
+      color: #F59E0B;
+    }
+    
+    .text-gray-500 {
+      color: #6b7280;
+    }
+    
+    .text-gray-600 {
+      color: #4b5563;
+    }
+    
+    .text-gray-700 {
+      color: #374151;
+    }
+    
+    .text-gray-800 {
+      color: #1f2937;
+    }
+    
+    /* 间距系统 */
+    .px-5 {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+    
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    
+    .py-5 {
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+    
+    .pt-4 {
+      padding-top: 1rem;
+    }
+    
+    .pb-24 {
+      padding-bottom: 6rem;
+    }
+    
+    .p-4 {
+      padding: 1rem;
+    }
+    
+    .p-5 {
+      padding: 1.25rem;
+    }
+    
+    .p-6 {
+      padding: 1.5rem;
+    }
+    
+    .mb-2 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .mb-3 {
+      margin-bottom: 0.75rem;
+    }
+    
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+    
+    .mb-5 {
+      margin-bottom: 1.25rem;
+    }
+    
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .mr-1 {
+      margin-right: 0.25rem;
+    }
+    
+    .mr-2 {
+      margin-right: 0.5rem;
+    }
+    
+    .mr-3 {
+      margin-right: 0.75rem;
+    }
+    
+    .ml-1 {
+      margin-left: 0.25rem;
+    }
+    
+    .mt-1 {
+      margin-top: 0.25rem;
+    }
+    
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+    
+    /* 圆角系统 */
+    .rounded-xl {
+      border-radius: 0.75rem;
+    }
+    
+    .rounded-2xl {
+      border-radius: 1rem;
+    }
+    
+    .rounded-full {
+      border-radius: 9999px;
+    }
+    
+    /* 阴影系统 */
+    .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    /* 字体大小 */
+    .text-xs {
+      font-size: 0.75rem;
+    }
+    
+    .text-sm {
+      font-size: 0.875rem;
+    }
+    
+    .text-base {
+      font-size: 1rem;
+    }
+    
+    .text-lg {
+      font-size: 1.125rem;
+    }
+    
+    .text-xl {
+      font-size: 1.25rem;
+    }
+    
+    /* 字体粗细 */
+    .font-medium {
+      font-weight: 500;
+    }
+    
+    .font-semibold {
+      font-weight: 600;
+    }
+    
+    .font-bold {
+      font-weight: 700;
+    }
+    
+    /* 布局 */
+    .sticky {
+      position: sticky;
+    }
+    
+    .top-0 {
+      top: 0;
+    }
+    
+    .z-50 {
+      z-index: 50;
+    }
+    
+    /* 特殊组件样式 */
+    .btn-primary {
+      background-color: #3B82F6;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-primary:hover {
+      background-color: #2563eb;
+    }
+    
+    .btn-primary:active {
+      transform: translateY(1px);
+    }
+    
+    .option-item {
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: block;
+    }
+    
+    .option-item:hover {
+      border-color: #3B82F6;
+      background-color: rgba(59, 130, 246, 0.05);
+    }
+    
+    .progress-bar {
+      height: 0.5rem;
+      background-color: #e5e7eb;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: #3B82F6;
+      transition: width 0.5s ease;
+    }
+    
+    .space-y-2 > * + * {
+      margin-top: 0.5rem;
+    }
+    
+    .space-y-3 > * + * {
+      margin-top: 0.75rem;
+    }
+    
+    .gap-2 {
+      gap: 0.5rem;
+    }
+    
+    .gap-3 {
+      gap: 0.75rem;
+    }
+    
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+    
+    .leading-relaxed {
+      line-height: 1.625;
+    }
+    
+    /* 图标样式 - 替代Font Awesome */
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+    }
+    
+    /* 禁用状态 */
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    
+    /* 边框 */
+    .border {
+      border-width: 1px;
+    }
+    
+    .border-2 {
+      border-width: 2px;
+    }
+    
+    .border-gray-300 {
+      border-color: #d1d5db;
+    }
+    
+    .border-primary {
+      border-color: #3B82F6;
+    }
+    
+    /* 溢出隐藏 */
+    .overflow-hidden {
+      overflow: hidden;
+    }
+    
+    /* 过渡效果 */
+    .transition-all {
+      transition: all 0.2s;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 640px) {
+      .px-5 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .p-6 {
+        padding: 1rem;
+      }
+      
+      .text-xl {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- 顶部导航 -->
+  <header class="bg-white shadow-sm py-4 px-5 sticky top-0 z-50">
+    <div class="flex justify-center items-center">
+      <span class="icon" style="color: #3B82F6; margin-right: 0.5rem;">🎓</span>
+      <h1 class="text-lg font-semibold">高中选科测评</h1>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="px-5 pb-24 pt-4">
+    <!-- 开始页面 -->
+    <section id="start-section" class="mt-6">
+      <div class="bg-white rounded-2xl p-6 shadow-sm mb-6">
+        <h2 class="text-xl font-bold mb-4">科学选科测评</h2>
+        <p class="text-gray-600 mb-5">
+          本测评包含100道题，将从兴趣、能力、学科倾向等维度，
+          为您推荐最适合的选科组合。<br><br>
+          <span class="text-primary font-medium">建议用时：15-20分钟</span>
+        </p>
+        
+        <div class="space-y-3 mb-6">
+          <div class="flex items-start">
+            <span class="icon" style="color: #3B82F6; margin-top: 0.25rem; margin-right: 0.75rem;">✅</span>
+            <span class="text-gray-600 text-sm">根据兴趣与能力综合评估</span>
+          </div>
+          <div class="flex items-start">
+            <span class="icon" style="color: #3B82F6; margin-top: 0.25rem; margin-right: 0.75rem;">✅</span>
+            <span class="text-gray-600 text-sm">适合新高考3+1+2/3+3模式</span>
+          </div>
+          <div class="flex items-start">
+            <span class="icon" style="color: #3B82F6; margin-top: 0.25rem; margin-right: 0.75rem;">✅</span>
+            <span class="text-gray-600 text-sm">提供个性化选科建议</span>
+          </div>
+        </div>
+        
+        <button id="start-btn" class="btn-primary w-full">
+          开始测评 <span class="icon" style="margin-left: 0.25rem;">→</span>
+        </button>
+      </div>
+      
+      <div class="bg-primary/5 rounded-xl p-4">
+        <h3 class="text-base font-medium mb-2 flex items-center">
+          <span class="icon" style="color: #3B82F6; margin-right: 0.5rem;">💡</span> 测评说明
+        </h3>
+        <p class="text-gray-600 text-sm">
+          请根据真实情况作答，无需过度思考。所有题目没有对错之分，
+          您的选择将直接影响推荐结果的准确性。
+        </p>
+      </div>
+    </section>
+
+    <!-- 测评页面 -->
+    <section id="test-section" class="mt-6 hidden">
+      <!-- 进度显示 -->
+      <div class="mb-5">
+        <div class="flex justify-between mb-2">
+          <span class="text-xs text-gray-500">进度</span>
+          <span class="text-xs font-medium text-primary" id="progress-text">1/100</span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" style="width: 1%"></div>
+        </div>
+      </div>
+
+      <!-- 题目卡片 -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm mb-6">
+        <h3 class="text-base font-semibold mb-4" id="question-number">问题 1/100</h3>
+        <p class="text-gray-800 text-base mb-5" id="question-content">
+          我对历史事件的因果关系分析很感兴趣
+        </p>
+        
+        <!-- 选项列表 -->
+        <div class="space-y-2" id="options-container">
+          <label class="option-item block">
+            <input type="radio" name="question" value="3" class="mr-2">
+            非常符合
+          </label>
+          <label class="option-item block">
+            <input type="radio" name="question" value="2" class="mr-2">
+            比较符合
+          </label>
+          <label class="option-item block">
+            <input type="radio" name="question" value="1" class="mr-2">
+            不太符合
+          </label>
+          <label class="option-item block">
+            <input type="radio" name="question" value="0" class="mr-2">
+            完全不符合
+          </label>
+        </div>
+      </div>
+
+      <!-- 导航按钮 -->
+      <div class="flex justify-between">
+        <button id="prev-btn" class="bg-white border border-gray-300 text-gray-700 py-4 px-6 rounded-xl text-base font-medium disabled" disabled>
+          <span class="icon" style="margin-right: 0.25rem;">←</span> 上一题
+        </button>
+        <button id="next-btn" class="btn-primary">
+          下一题 <span class="icon" style="margin-left: 0.25rem;">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 结果页面 -->
+    <section id="result-section" class="mt-6 hidden">
+      <div class="text-center mb-6">
+        <h2 class="text-xl font-bold">您的选科推荐</h2>
+        <p class="text-gray-500 text-sm mt-1">基于您的测评结果</p>
+      </div>
+
+      <!-- 结果卡片 -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm mb-6">
+        <!-- 结果类型 -->
+        <div class="flex justify-center mb-6">
+          <div id="result-type" class="px-6 py-2 rounded-full text-white font-medium text-base">
+            文综倾向
+          </div>
+        </div>
+        
+        <!-- 得分雷达图占位 -->
+        <div class="w-full h-48 bg-gray-50 rounded-xl mb-6 flex items-center justify-center">
+          <div style="text-align: center; color: #6b7280;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+            <div>能力分析图表</div>
+          </div>
+        </div>
+        
+        <!-- 推荐组合 -->
+        <div class="mb-6">
+          <h3 class="text-base font-medium mb-3">推荐选科组合</h3>
+          <div id="recommend-combo" class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">历史</span>
+            <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">地理</span>
+            <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">政治</span>
+          </div>
+        </div>
+        
+        <!-- 结果分析 -->
+        <div>
+          <h3 class="text-base font-medium mb-3">结果分析</h3>
+          <p id="result-analysis" class="text-gray-600 text-sm leading-relaxed">
+            您在人文社科类题目中表现出较强的兴趣和潜力，对历史事件分析、社会现象解读等领域有天然的敏感度。这类选科组合适合未来报考法学、新闻学、社会学等专业方向。
+          </p>
+        </div>
+      </div>
+
+      <!-- 行动按钮 -->
+      <div class="flex flex-col gap-3">
+        <button id="save-result" class="bg-white border border-primary text-primary py-4 px-6 rounded-xl text-base font-medium">
+          <span class="icon" style="margin-right: 0.25rem;">💾</span> 保存结果
+        </button>
+        <button id="restart-btn" class="btn-primary">
+          <span class="icon" style="margin-right: 0.25rem;">🔄</span> 重新测评
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 100道测评题目（按文综/理综/混合维度设计）
+    const questions = [
+      // 文综倾向题目（共35题）
+      "我对历史事件的因果关系分析很感兴趣",
+      "阅读政治新闻时我会思考背后的政策逻辑",
+      "我喜欢研究不同地区的地理环境差异",
+      "我能轻松记住历史年代和事件",
+      "讨论社会现象时我能提出自己的观点",
+      "我喜欢绘制地图和分析地形",
+      "我对法律条文和案例分析感兴趣",
+      "我经常关注国际政治局势",
+      "我喜欢研究气候对人类活动的影响",
+      "历史纪录片是我喜欢的节目类型",
+      "我擅长撰写议论文和社会评论",
+      "我能理解不同国家的文化差异",
+      "我对哲学问题有探索欲望",
+      "我喜欢参加辩论活动",
+      "旅游时我会关注当地的人文历史",
+      "我能轻松区分不同的政治制度特点",
+      "我喜欢收集各地的地理信息",
+      "我对经济现象有自己的理解",
+      "我喜欢研究古代文明的兴衰",
+      "我擅长分析社会问题的解决方案",
+      "我能理解地球运动与季节变化的关系",
+      "我喜欢阅读历史小说",
+      "我关注社会热点话题并思考解决方案",
+      "我能看懂复杂的地图和图表",
+      "我对心理学和人类行为分析感兴趣",
+      "我喜欢研究不同时期的艺术风格",
+      "我能理解国际关系的基本准则",
+      "我对地质构造和矿产资源分布感兴趣",
+      "我喜欢分析文学作品的社会背景",
+      "我擅长统计和分析社会数据",
+      "我对环境保护和可持续发展感兴趣",
+      "我喜欢研究战争与和平的历史",
+      "我能理解不同经济体制的特点",
+      "我对人口问题和城市化发展感兴趣",
+      "我喜欢探讨伦理和道德问题",
+      
+      // 理综倾向题目（共35题）
+      "我对物理公式的推导过程很感兴趣",
+      "化学实验中的现象变化让我着迷",
+      "我喜欢观察生物的生长和进化过程",
+      "我擅长解决数学难题",
+      "我对机械原理和工程设计感兴趣",
+      "我喜欢研究物质的化学结构",
+      "我能理解生物遗传和变异的原理",
+      "我喜欢用数学方法解决实际问题",
+      "我对电学和磁学现象充满好奇",
+      "我喜欢做化学实验并记录结果",
+      "我对生态系统的平衡感兴趣",
+      "我擅长几何证明和空间想象",
+      "我喜欢研究力学原理在生活中的应用",
+      "我能理解化学反应的基本原理",
+      "我对人体生理结构和功能感兴趣",
+      "我喜欢计算和分析数据",
+      "我对光学现象和原理感兴趣",
+      "我喜欢研究元素周期表的规律",
+      "我对微生物世界充满好奇",
+      "我擅长逻辑推理和问题分析",
+      "我对核能和新能源技术感兴趣",
+      "我喜欢研究有机化合物的性质",
+      "我对进化论和自然选择感兴趣",
+      "我喜欢统计学和概率问题",
+      "我对天体物理和宇宙起源感兴趣",
+      "我能理解化学平衡和反应速率",
+      "我喜欢研究细胞的结构和功能",
+      "我擅长数学建模和数据分析",
+      "我对量子物理的基本概念感兴趣",
+      "我喜欢研究物质的状态变化",
+      "我对基因工程和生物技术感兴趣",
+      "我喜欢解决物理中的运动学问题",
+      "我对化学在生活中的应用感兴趣",
+      "我喜欢观察和研究动物行为",
+      "我对人工智能和算法原理感兴趣",
+      
+      // 混合倾向题目（共30题）
+      "我既能理解文学作品也能解决科学问题",
+      "我喜欢艺术但也对科技发展感兴趣",
+      "我擅长语言表达也擅长逻辑推理",
+      "我既喜欢历史也喜欢科学史",
+      "我能在人文和科学学科中找到平衡点",
+      "我喜欢阅读文学作品也喜欢科普文章",
+      "我对社会科学和自然科学都有兴趣",
+      "我擅长写作也擅长实验操作",
+      "我喜欢哲学思考也喜欢科学探索",
+      "我对艺术设计和工程设计都感兴趣",
+      "我能理解人文关怀也能理解科学精神",
+      "我喜欢音乐也喜欢计算机编程",
+      "我对经济学和物理学都有兴趣",
+      "我擅长记忆也擅长分析",
+      "我喜欢诗歌也喜欢数学公式",
+      "我对心理学和神经科学都感兴趣",
+      "我喜欢手工制作也喜欢科学实验",
+      "我能理解文化差异也能理解科学原理",
+      "我喜欢历史也喜欢科技史",
+      "我对社会学和统计学都感兴趣",
+      "我喜欢绘画也喜欢三维建模",
+      "我能理解伦理问题也能理解技术难题",
+      "我喜欢古典文学也喜欢科幻作品",
+      "我对地理信息系统和遥感技术感兴趣",
+      "我喜欢政治学也喜欢科学政策",
+      "我擅长文字表达也擅长数据可视化",
+      "我对宗教学和生命科学都感兴趣",
+      "我喜欢传统工艺也喜欢现代科技",
+      "我能理解哲学问题也能理解数学问题",
+      "我对环境科学和环境政策都感兴趣"
+    ];
+
+    // DOM元素
+    const startSection = document.getElementById('start-section');
+    const testSection = document.getElementById('test-section');
+    const resultSection = document.getElementById('result-section');
+    const startBtn = document.getElementById('start-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const saveResultBtn = document.getElementById('save-result');
+    const progressText = document.getElementById('progress-text');
+    const progressFill = document.getElementById('progress-fill');
+    const questionNumber = document.getElementById('question-number');
+    const questionContent = document.getElementById('question-content');
+    const optionsContainer = document.getElementById('options-container');
+    
+    // 测评状态
+    let currentQuestion = 0;
+    let scores = { liberal: 0, science: 0, mixed: 0 }; // 三大类得分
+
+    // 开始测评
+    startBtn.addEventListener('click', () => {
+      startSection.classList.add('hidden');
+      testSection.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    });
+
+    // 上一题
+    prevBtn.addEventListener('click', () => {
+      if (currentQuestion > 0) {
+        // 减去当前题目的分数
+        const selectedOption = document.querySelector('input[name="question"]:checked');
+        if (selectedOption) {
+          const value = parseInt(selectedOption.value);
+          if (currentQuestion < 35) scores.liberal -= value;
+          else if (currentQuestion < 70) scores.science -= value;
+          else scores.mixed -= value;
+        }
+        
+        currentQuestion--;
+        updateQuestion();
+        updateNavButtons();
+      }
+    });
+
+    // 下一题/提交
+    nextBtn.addEventListener('click', () => {
+      const selectedOption = document.querySelector('input[name="question"]:checked');
+      if (!selectedOption) {
+        alert('请选择一个选项后继续');
+        return;
+      }
+      
+      // 记录当前题目的分数
+      const value = parseInt(selectedOption.value);
+      if (currentQuestion < 35) scores.liberal += value;
+      else if (currentQuestion < 70) scores.science += value;
+      else scores.mixed += value;
+      
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        updateQuestion();
+        updateNavButtons();
+        window.scrollTo(0, 0);
+      } else {
+        // 完成测评，显示结果
+        showResult();
+      }
+    });
+
+    // 重新测评
+    restartBtn.addEventListener('click', () => {
+      currentQuestion = 0;
+      scores = { liberal: 0, science: 0, mixed: 0 };
+      resultSection.classList.add('hidden');
+      testSection.classList.remove('hidden');
+      updateQuestion();
+      updateNavButtons();
+      window.scrollTo(0, 0);
+    });
+
+    // 保存结果
+    saveResultBtn.addEventListener('click', () => {
+      // 创建结果文本
+      const resultText = `高中选科测评结果\n\n` +
+        `测评类型：${document.getElementById('result-type').textContent}\n` +
+        `推荐组合：${document.getElementById('recommend-combo').textContent}\n` +
+        `结果分析：${document.getElementById('result-analysis').textContent}\n\n` +
+        `测评时间：${new Date().toLocaleString()}`;
+      
+      // 尝试使用剪贴板API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(resultText).then(() => {
+          alert('结果已复制到剪贴板！');
+        }).catch(() => {
+          fallbackCopy(resultText);
+        });
+      } else {
+        fallbackCopy(resultText);
+      }
+    });
+
+    // 兼容性复制方法
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        alert('结果已复制到剪贴板！');
+      } catch (err) {
+        alert('复制失败，请手动保存以下内容：\n\n' + text);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // 更新题目显示
+    function updateQuestion() {
+      questionNumber.textContent = `问题 ${currentQuestion + 1}/${questions.length}`;
+      questionContent.textContent = questions[currentQuestion];
+      progressText.textContent = `${currentQuestion + 1}/${questions.length}`;
+      progressFill.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      
+      // 清除之前的选择
+      document.querySelectorAll('input[name="question"]').forEach(radio => {
+        radio.checked = false;
+      });
+    }
+
+    // 更新导航按钮状态
+    function updateNavButtons() {
+      prevBtn.disabled = currentQuestion === 0;
+      if (currentQuestion === 0) {
+        prevBtn.classList.add('disabled');
+      } else {
+        prevBtn.classList.remove('disabled');
+      }
+      
+      // 最后一题时修改按钮文本
+      if (currentQuestion === questions.length - 1) {
+        nextBtn.innerHTML = '查看结果 <span class="icon" style="margin-left: 0.25rem;">✅</span>';
+      } else {
+        nextBtn.innerHTML = '下一题 <span class="icon" style="margin-left: 0.25rem;">→</span>';
+      }
+    }
+
+    // 显示测评结果
+    function showResult() {
+      // 计算总分和比例
+      const total = scores.liberal + scores.science + scores.mixed;
+      const liberalRate = (scores.liberal / total) * 100;
+      const scienceRate = (scores.science / total) * 100;
+      const mixedRate = (scores.mixed / total) * 100;
+      
+      // 确定推荐类型
+      let resultType, comboHtml, analysis;
+      
+      if (liberalRate >= 40) {
+        // 文综倾向
+        resultType = { name: "文综倾向", class: "bg-liberal" };
+        comboHtml = `
+          <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">历史</span>
+          <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">地理</span>
+          <span class="px-3 py-1 bg-liberal/20 text-liberal rounded-full text-sm">政治</span>
+        `;
+        analysis = "您在人文社科类题目中表现出较强的兴趣和潜力，对历史事件分析、社会现象解读等领域有天然的敏感度。这类选科组合适合未来报考法学、新闻学、社会学、国际政治等专业方向，能充分发挥您的人文素养和思辨能力。";
+      } else if (scienceRate >= 40) {
+        // 理综倾向
+        resultType = { name: "理综倾向", class: "bg-science" };
+        comboHtml = `
+          <span class="px-3 py-1 bg-science/20 text-science rounded-full text-sm">物理</span>
+          <span class="px-3 py-1 bg-science/20 text-science rounded-full text-sm">化学</span>
+          <span class="px-3 py-1 bg-science/20 text-science rounded-full text-sm">生物</span>
+        `;
+        analysis = "您在自然科学领域表现出明显优势，对物理规律、化学变化和生物现象有浓厚兴趣。这类选科组合适合未来报考医学、工学、理学、计算机等专业方向，能充分发挥您的逻辑思维和科学探究能力。";
+      } else {
+        // 混合倾向
+        resultType = { name: "文理混合", class: "bg-mixed" };
+        comboHtml = `
+          <span class="px-3 py-1 bg-mixed/20 text-mixed rounded-full text-sm">物理</span>
+          <span class="px-3 py-1 bg-mixed/20 text-mixed rounded-full text-sm">地理</span>
+          <span class="px-3 py-1 bg-mixed/20 text-mixed rounded-full text-sm">政治</span>
+          <span class="px-3 py-1 bg-mixed/20 text-mixed rounded-full text-sm">或 史化生</span>
+        `;
+        analysis = "您在人文和科学领域均表现出一定兴趣和能力，具有跨学科思维优势。这类选科组合灵活性强，适合未来报考建筑学、经济学、环境科学、心理学等交叉学科专业，能兼顾您的多元发展需求。";
+      }
+      
+      // 更新结果页面
+      document.getElementById('result-type').textContent = resultType.name;
+      document.getElementById('result-type').className = `${resultType.class} px-6 py-2 rounded-full text-white font-medium text-base`;
+      document.getElementById('recommend-combo').innerHTML = comboHtml;
+      document.getElementById('result-analysis').textContent = analysis;
+      
+      // 切换显示
+      testSection.classList.add('hidden');
+      resultSection.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    // 初始化
+    updateQuestion();
+    updateNavButtons();
+  </script>
+</body>
+</html>
